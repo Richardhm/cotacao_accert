@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.clock-container {
+  text-align: center;
+  color:white;
+  display: flex;
+ 
+  flex-direction: column;
+  
+  align-self: center;
+}
+
+#nome::placeholder,#telefone::placeholder {
+    color: white;
+}

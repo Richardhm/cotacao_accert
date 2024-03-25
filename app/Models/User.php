@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Cashier\Billable;
+use App\Models\Traits\Tenantable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, Notifiable,Tenantable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +21,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'tenant_id',
         'email',
+
         'password',
     ];
 
@@ -42,4 +46,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function cabecalho()
+    {
+        return $this->belongsTo(Cabecalho::class);
+    }
+
+    public function pdfPerfil()
+    {
+        return $this->hasOne(PdfPerfil::class);
+    }
+
+    public function storeCabecalho(Cabecalho $cabecalho,String $cor_fundo,String $cor_fonte)
+    {
+        return $this->pdfPerfil()->updateOrCreate(
+            ['cabecalho_id'=>$cabecalho->id],
+            [
+                'cor_fundo' => $cor_fundo,
+                'cor_fonte' => $cor_fonte
+            ]
+        );
+    }
+
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class,'tenant_id');
+    }
+
+
+
 }

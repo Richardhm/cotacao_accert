@@ -4,18 +4,56 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <title>{{ config('app.name', 'Laravel') }}</title>
-
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="{{asset('build/assets/toastr/toastr.min.css')}}">
+
+
+        <style>
+            .toast {width: 400px;max-width: none;}
+            /* Estilos para a modal */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .modal-content {
+                position: relative;
+                margin: 5% auto;
+                padding: 20px;
+                width: 80%;
+                max-width: 800px;
+
+            }
+
+            .close-btn {
+                font-size: 1.5rem;
+            }
+
+            /* Estilos para o botão de abrir modal */
+            #openModalBtn {
+                cursor: pointer;
+            }
+
+        </style>
+        <script src="build/assets/jquery.js"></script>
+        <script src="build/assets/toastr/toastr.min.js"></script>
+        <script src="js/jquery.mask.min.js"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <body class="font-sans antialiased bg-gray-100">
+    <div>
+
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -32,5 +70,6 @@
                 {{ $slot }}
             </main>
         </div>
+
     </body>
 </html>

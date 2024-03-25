@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Subscriptions;
+use App\Observers\SubscriptionObserver;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Listeners\SetTenantIdInSession;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        Login::class => [
+            SetTenantIdInSession::class
+        ],
     ];
 
     /**
@@ -25,7 +32,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Subscriptions::observe(SubscriptionObserver::class);
     }
 
     /**
