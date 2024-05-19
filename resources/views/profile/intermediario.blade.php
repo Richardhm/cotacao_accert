@@ -17,7 +17,7 @@
 <body class="font-sans bg-gray-100">
 <div class="w-full h-screen">
     <nav class="bg-purple-300 bg-opacity-20 py-1 absolute top-0 w-full flex justify-between items-center">
-        <a href="{{route('home')}}" class="text-gray-800 text-4xl text-center align-center flex self-center font-mono">
+        <a href="{{route('welcome')}}" class="text-gray-800 text-4xl text-center align-center flex self-center font-mono">
             <img src="{{asset('logo.png')}}" alt="Logo" style="width:35%;">
         </a>
 

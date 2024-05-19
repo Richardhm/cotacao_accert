@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cabecalho;
 use App\Models\Configuracoes;
 use App\Models\ConfiguracoesDefault;
+use App\Models\PdfPerfil;
+use App\Models\Subscriptions;
 use App\Models\Tenant;
 use App\Models\TenantOperadora;
 use App\Models\User;
@@ -20,27 +23,34 @@ class DashboardController extends Controller
 {
     public function config()
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find(auth()->user()->id)
+            ->with('pdfPerfil','pdfPerfil.cabecalho','tenant')
+            ->first();
+
         $tenant = Tenant::find(session()->get('tenant_id'));
         $tenantId = session()->get('tenant_id');
         $planos = Planos::all();
+
         if ($tenant->tipo == 1 && TenantOperadora::where('tenant_id',$tenantId)->count() == 1) {
             $operadora_id = TenantOperadora::where('tenant_id',$tenantId)->first()->operadora_id;
             $operadoras = Operadoras::where('id',$operadora_id)->get();
         } else {
             $operadoras = Operadoras::all();
         }
+
         if(TenantOperadora::where('tenant_id',$tenantId)->count() == 1) {
             $tenant_operadora = TenantOperadora::where('tenant_id',$tenantId)->first()->operadora_id;
         } else {
             $tenant_operadora = '';
         }
+
         return view('home.config',[
             'operadoras' => $operadoras,
             'photo' => $user->photo ?? '',
             'tenant_operadora' => $tenant_operadora,
             'tenant' => $tenant,
-            'planos' => $planos
+            'planos' => $planos,
+            'user' => $user
         ]);
     }
 
@@ -90,6 +100,52 @@ class DashboardController extends Controller
     public function configurar_finalizar()
     {
         $tenant_id = session()->get('tenant_id');
+
+
+        $tipo = Tenant::find($tenant_id)->tipo;
+
+
+
+        if($tipo == 1) {
+
+            $cad = new TenantOperadora();
+            $tenant = TenantOperadora::where("tenant_id",$tenant_id)->first();
+
+
+
+            if($tenant) {
+                $tenant->operadora_id = request()->operadora_id_finalizar;
+                $tenant->save();
+            } else {
+                $cad = new TenantOperadora();
+                $cad->tenant_id = $tenant_id;
+                $cad->operadora_id = request()->operadora_id_finalizar;
+                $cad->save();
+            }
+
+
+
+
+
+
+
+
+
+
+            if(!empty(request()->cabecalho_id_finalizar) && isset(request()->cabecalho_id_finalizar)) {
+                auth()->user()->pdfPerfil()->updateOrCreate([
+                    'user_id' => auth()->user()->id
+                ],[
+                    'cabecalho_id' => request()->cabecalho_id_finalizar
+                ]);
+
+            }
+
+
+        }
+
+
+
         $user = User::where('tenant_id',$tenant_id)->first();
         $user->check = true;
         $user->save();
@@ -103,6 +159,10 @@ class DashboardController extends Controller
 
     public function index()
     {
+//        if (auth()->user()->subscription('premium')->onGracePeriod()) {
+//            echo "Olaaa";
+//            //dd(auth()->user()->subscription('premium')->resume());
+//        }
 
         $listConvidados = "";
         if(auth()->user()->tenant()->first()->tipo == 3 && auth()->user()->admin == 1) {
@@ -110,6 +170,7 @@ class DashboardController extends Controller
         }
 
         $tenant_id = session()->get('tenant_id');
+
         $operadoras = Tenant::find($tenant_id)->operadoras;
         $cidades = TabelaOrigens::all();
 
@@ -143,6 +204,7 @@ class DashboardController extends Controller
     public function orcamento()
     {
         $dados = request()->all();
+
         $sql = "";
         $chaves = [];
         foreach(request()->faixas[0] as $k => $v) {
@@ -206,6 +268,29 @@ class DashboardController extends Controller
             "planoCad" => $planosCad
         ]);
     }
+
+    public function cabecalhoHeaderFooter(Request $request)
+    {
+        $id = $request->id;
+//        auth()->user()->createOrUpdate([
+//            'cabecalho_id' => $id
+//        ]);
+
+        auth()->user()->pdfPerfil()->updateOrCreate([
+
+            'user_id' => auth()->user()->id
+        ],[
+            'cabecalho_id' => $id
+        ]);
+
+
+
+
+        $cab = Cabecalho::find($id);
+        return $cab;
+    }
+
+
 
     public function observacao(Request $request)
     {
@@ -282,10 +367,6 @@ class DashboardController extends Controller
         $user->save();
     }
 
-
-
-
-
     public function configurar_observacoes_coparticipacao(Request $request)
     {
         $tenant_id = session()->get('tenant_id');
@@ -341,19 +422,8 @@ class DashboardController extends Controller
             $alt->coparticipacao_valor_05 = $request->coparticipacao_valor_05 != "" ? str_replace([".", ","],["", "."],$request->coparticipacao_valor_05) : "";
 
             $alt->save();
-
-
         }
 
-
-
     }
-
-
-
-
-
-
-
 
 }

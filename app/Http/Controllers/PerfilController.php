@@ -70,6 +70,7 @@ class PerfilController extends Controller
 
         $pdf_perfil = PdfPerfil::where('user_id',auth()->user()->id)->with('cabecalho')->first();
 
+
         $keys = implode(",",$chaves);
         $cidade = request()->tabela_origem;
         $cliente = request()->cliente;
@@ -107,8 +108,8 @@ class PerfilController extends Controller
 
         $html = view('pdf.imagem',[
             "body" => $pdf_perfil->cor_fundo ?? "rgb(33,86,162)",
-            "header" => $pdf_perfil->cabecalho->nome ?? "",
-            "footer" => $pdf_perfil->cor_fonte ?? "",
+            "header" => $pdf_perfil->cabecalho->header ?? "",
+            "footer" => $pdf_perfil->cabecalho->footer ?? "",
             "dados" => $dados,
             "odonto" => $odonto,
             "cliente" => $cliente,

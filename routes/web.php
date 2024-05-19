@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',function(){
     return view('welcome');
-});
+})->name('welcome');
 
 
 
@@ -40,6 +40,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post("/mudardados",[PerfilController::class,'mudarDados'])->name('mudar.dados');
     Route::get('/home', [DashboardController::class,'index'])->name('home')->middleware(['check','free']);
     Route::get('/config', [DashboardController::class,'config'])->name('home.config');
+    Route::post('/config/cabecalho/header/footer', [DashboardController::class,'cabecalhoHeaderFooter'])->name('cabecalho.header.footer');
     Route::get('/configuracao', [DashboardController::class,'configuracao'])->name('home.configuracao');
     Route::get('/coparticipacao', [DashboardController::class,'coparticipacao'])->name('home.coparticipacao');
     Route::post('/operadora/planos',[DashboardController::class,'operadoraPlanos'])->name('home.operadora.plano');
@@ -62,7 +63,6 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/tenant/operadoras',[\App\Http\Controllers\TenantController::class,'operadoras'])->name('tenant.operadoras');
     Route::post('/tenant/basico/operadoras',[\App\Http\Controllers\TenantController::class,'tenant_operadora'])->name('tenant.basico.operadoras');
     Route::post('/tenant/listar/planos/operadoras',[\App\Http\Controllers\TenantController::class,'tenant_listar_planos_operadoras'])->name('tenant.listar.planos.operadoras');
-
 
     Route::post('/configuracao/observacao',[\App\Http\Controllers\DashboardController::class,'observacao'])->name('configuracao.observacao');
     Route::post('/configuracao/coparticipacao',[\App\Http\Controllers\DashboardController::class,'configurar_coparticipacao'])->name('configuracao.coparticipacao');

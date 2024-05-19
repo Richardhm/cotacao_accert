@@ -232,6 +232,7 @@
                     </table>
 
 
+
                     <div>
                         <div class="linha01" style="font-size:0.7em;color:#FFF;width:95%;margin:0 auto;">Linha 01</div>
                         <div class="linha02" style="font-size:0.7em;color:#FFF;width:95%;margin:10px auto;">Linha 02</div>

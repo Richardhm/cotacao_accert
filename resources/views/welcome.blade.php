@@ -1,139 +1,443 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js" lang="">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>BmSys 11</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+        rel="shortcut icon"
+        type="image/x-icon"
+        href="assets/img/favicon.png"
+    />
+    <!-- Place favicon.ico in the root directory -->
 
-    <title>Pagina Inicial</title>
-    <!-- Scripts -->
-    <script src="build/assets/jquery.js"></script>
-
-    <style>
-        /* Estilo para a modal */
-        .modal {display:none;position:fixed;z-index:1;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0, 0, 0, 0.7);}
-        .modal-content {background-color: #fefefe;margin: 0% auto;padding: 20px;border: 1px solid #888;width: 40%;display:flex;flex-direction: column;}
-        .close {color: #aaa;float: right;font-size: 28px;font-weight: bold;}
-        .close:hover,
-        .close:focus {color: black;text-decoration: none;cursor: pointer;}
-
-        /* Estilo para o botão do WhatsApp */
-        .whatsapp-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-
-            color: #fff;
-
-            border-radius: 5px;
-            text-decoration: none;
-            z-index: 9999; /* Garante que o botão fique acima de outros elementos */
-        }
-
-        .whatsapp-button:hover {
-
-        }
-    </style>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- ======== CSS here ======== -->
+    <link rel="stylesheet" href="{{asset('build/assets/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('build/assets/css/lineicons.css')}}" />
+    <link rel="stylesheet" href="{{asset('build/assets/css/animate.css')}}" />
+    <link rel="stylesheet" href="{{asset('build/assets/css/main.css')}}" />
 </head>
-<body class="font-sans bg-gray-100">
-<div class="w-full h-screen">
-    <nav class="bg-purple-300 bg-opacity-20 py-1 absolute top-0 w-full flex justify-between items-center">
-        <a href="{{route('home')}}" class="text-gray-800 text-4xl text-center align-center flex self-center font-mono">
-            <img src="{{asset('logo.png')}}" alt="Logo" style="width:35%;">
-        </a>
-        <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-            <ul class="flex">
-                <li>
-                    <a href="{{route('listar.planos')}}" class="text-white rounded-full shadow-cyan-500/50 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 focus:outline-none font-medium text-sm px-5 text-center py-1.5 me-2 mb-2" aria-current="page">Assinar</a>
-                </li>
-                <li>
-                    <a href="{{route('login')}}" class="text-white rounded-full bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 focus:outline-none dark:focus:ring-pink-800 font-medium text-sm px-5 text-center py-1.5 me-2 mb-2" aria-current="page">Login</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">
+    You are using an <strong>outdated</strong> browser. Please
+    <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+    your experience and security.
+</p>
+<![endif]-->
 
-    <section class="flex w-full justify-center h-screen items-center" style="border-bottom: 50px solid #A78BFA;">
-
-        <div class="h-2/4 w-1/4 p-4 flex flex-col justify-between text-white" style="background-color: #A78BFA;width:380px;height:490px;">
-
-            <div class="flex justify-between mb-4">
-                <h2 class="font-extrabold font-bold">Basico</h2>
-                <div class="font-bold">
-                    <span>R$ 35,00</span>
-                    <p>POR Mês</p>
+<!-- ======== preloader start ======== -->
+<div class="preloader">
+    <div class="loader">
+        <div class="spinner">
+            <div class="spinner-container">
+                <div class="spinner-rotator">
+                    <div class="spinner-left">
+                        <div class="spinner-circle"></div>
+                    </div>
+                    <div class="spinner-right">
+                        <div class="spinner-circle"></div>
+                    </div>
                 </div>
             </div>
-            <div class="mb-4">
-                <ul>
-                    <li class="font-bold border-b-2 border-t-2 text-center">Direito a 1 email</li>
-                    <li class="font-bold border-b-2 text-center">Cancelar a qualquer momento</li>
-                    <li class="font-bold border-b-2 text-center">Direito a 1 tabela</li>
-                </ul>
-            </div>
-            <div class="w-full">
-                <a href="{{route('perfil.cadastrar.basico')}}" type="button" class="text-purple-900 w-full bg-white font-medium rounded-full px-5 py-2.5 text-center mb-2" style="color:#8907BB;">Assinar</a>
-            </div>
-
         </div>
-
-        <div class="h-2/4 w-1/4 p-4 flex flex-col justify-between text-white" style="background-color: #A78BFA;margin:0 80px;width:380px;height:490px;">
-
-            <div class="flex justify-between">
-                <h2 class="font-bold">Intermediario</h2>
-                <div class="font-bold">
-                    <span>R$ 55,00</span>
-                    <p>POR Mês</p>
-                </div>
-            </div>
-
-            <div>
-                <ul>
-                    <li class="font-bold border-b-2 border-t-2 text-center">Direito a 1 email</li>
-                    <li class="font-bold border-b-2 border-t-2 text-center">Cancelar a qualquer momento</li>
-                    <li class="font-bold border-b-2 border-t-2 text-center">Direito a todas as tabelas</li>
-                </ul>
-            </div>
-
-            <div class="w-full">
-                <a href="{{route('perfil.cadastrar.intermediario')}}" type="button" class="text-purple-900 w-full bg-white font-medium rounded-full px-5 py-2.5 text-center mb-2" style="color:#8907BB;">Assinar</a>
-            </div>
-
-        </div>
-
-        <div class="h-2/4 w-1/4 p-4 flex flex-col justify-between text-white" style="background-color: #A78BFA;width:380px;height:490px;">
-
-            <div class="flex justify-between">
-                <h2 class="font-bold">Empresarial</h2>
-                <div>
-                    <span class="font-bold">R$ 130,00</span>
-                    <p class="font-bold">POR Mês</p>
-                </div>
-            </div>
-            <div>
-                <ul>
-                    <li class="font-bold border-b-2 border-t-2 text-center">Direito a 3 email's</li>
-                    <li class="font-bold border-b-2 border-t-2 text-center">Apartir de 4 adicionar 30,00 a cada assinatura</li>
-                    <li class="font-bold border-b-2 border-t-2 text-center">Cancelar a qualquer momento</li>
-                    <li class="font-bold border-b-2 border-t-2 text-center">Direito todas as tabelas</li>
-                </ul>
-            </div>
-            <div class="w-full">
-                <a href="{{route('perfil.cadastrar.empresarial')}}" type="button" class="text-purple-900 w-full bg-white font-medium rounded-full px-5 py-2.5 text-center mb-2" style="color:#8907BB;">Assinar</a>
-            </div>
-
-        </div>
-
-
-    </section>
-
-    <!-- Botão do WhatsApp -->
-    <a class="whatsapp-button" href="https://api.whatsapp.com/send?phone=5562993581475&amp;text=Oi tudo bem?" target="_blank"  rel="nofollow">
-        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="70px" height="70px" clip-rule="evenodd"><path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"/><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"/><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"/><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"/><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"/></svg>
-    </a>
-
+    </div>
 </div>
+<!-- preloader end -->
 
+<!-- ======== header start ======== -->
+<header class="header">
+    <div class="navbar-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="{{asset('build/assets/img/logo/logo-bmsys.png')}}" alt="Logo" />
+                        </a>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+
+                        <div
+                            class="collapse navbar-collapse sub-menu-bar"
+                            id="navbarSupportedContent"
+                        >
+                            <ul id="nav" class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="page-scroll active" href="#home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="page-scroll" href="#features">Planos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="page-scroll" href="#about">Sobre</a>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                        <!-- navbar collapse -->
+                    </nav>
+                    <!-- navbar -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- navbar area -->
+</header>
+<!-- ======== header end ======== -->
+
+<!-- ======== hero-section start ======== -->
+<section id="home" class="hero-section">
+    <div class="container">
+        <div class="row align-items-center position-relative">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="wow fadeInUp" data-wow-delay=".4s">
+                        Realizar Cotação
+                    </h1>
+                    <p class="wow fadeInUp" data-wow-delay=".6s">
+                        O sistema de cotação de plano de saúde permite aos usuários selecionarem operadora, plano e cidade para visualizarem uma tabela de preços. Eles podem gerar uma imagem da cotação para enviar aos clientes, tornando o processo de comunicação mais ágil e profissional.
+                    </p>
+                    <a
+                        href="{{route('listar.planos')}}"
+                        class="main-btn border-btn btn-hover wow fadeInUp"
+                        data-wow-delay=".6s"
+                    >Assinatura Aqui</a
+                    >
+                    <a href="#features" class="scroll-bottom">
+                        <i class="lni lni-arrow-down"></i
+                        ></a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
+                    <img src="{{asset('build/assets/img/hero/tela-inicial2.png')}}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ======== hero-section end ======== -->
+
+<!-- ======== feature-section start ======== -->
+<section id="features" class="feature-section">
+        <h2>Planos</h2>
+        <p class="text-center">Faça um teste, cadastre-se Gratuitamente</p>
+        <div class="feature-section-content">
+
+            <div class="feature-section-content-card">
+                <div class="">
+                    <div class="content">
+                        <h3>Basico</h3>
+                        <div class="font-bold">
+                            <span>R$ 35,00</span>
+                            <p>POR Mês</p>
+                        </div>
+                    </div>
+                    <div class="">
+                        <ul>
+                            <li class="font-bold border-b-2 border-t-2 text-center">Direito a 1 email</li>
+                            <li class="font-bold border-b-2 text-center">Cancelar a qualquer momento</li>
+                            <li class="font-bold border-b-2 text-center">Direito a 1 tabela</li>
+                        </ul>
+                    </div>
+                    <div class="w-full">
+                        <a href="{{route('perfil.cadastrar.basico')}}" type="button" class="text-purple-900 w-full bg-white font-medium rounded-full px-5 py-2.5 text-center mb-2" style="color:#8907BB;">Assinar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-section-content-card">
+                <div class="">
+                    <div class="content">
+                        <h3>Intermediario</h3>
+                        <div class="font-bold">
+                            <span>R$ 35,00</span>
+                            <p>POR Mês</p>
+                        </div>
+                    </div>
+                    <div class="">
+                        <ul>
+                            <li class="font-bold border-b-2 border-t-2 text-center">Direito a 1 email</li>
+                            <li class="font-bold border-b-2 text-center">Cancelar a qualquer momento</li>
+                            <li class="font-bold border-b-2 text-center">Direito a 1 tabela</li>
+                        </ul>
+                    </div>
+                    <div class="w-full">
+                        <a href="{{route('perfil.cadastrar.intermediario')}}" type="button" class="text-purple-900 w-full bg-white font-medium rounded-full px-5 py-2.5 text-center mb-2" style="color:#8907BB;">Assinar</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="feature-section-content-card">
+                <div class="">
+                    <div class="content">
+                        <h3>Empresarial</h3>
+                        <div class="font-bold">
+                            <span>R$ 35,00</span>
+                            <p>POR Mês</p>
+                        </div>
+                    </div>
+                    <div class="">
+                        <ul>
+                            <li class="font-bold border-b-2 border-t-2 text-center">Direito a 1 email</li>
+                            <li class="font-bold border-b-2 text-center">Cancelar a qualquer momento</li>
+                            <li class="font-bold border-b-2 text-center">Direito a 1 tabela</li>
+                        </ul>
+                    </div>
+                    <div class="w-full">
+                        <a href="{{route('perfil.cadastrar.empresarial')}}" type="button" class="text-purple-900 w-full bg-white font-medium rounded-full px-5 py-2.5 text-center mb-2" style="color:#8907BB;">Assinar</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+</section>
+<!-- ======== feature-section end ======== -->
+
+<!-- ======== about-section start ======== -->
+<section id="about" class="about-section pt-150">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-6 col-lg-6">
+                <div class="about-img">
+                    <div style="width:550px;height:421px;background-color: #51A351;border-radius: 5px;border:10px solid #A78BFA;">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/gXN9acC9edU?si=LGbE8WDUe-0BGAts" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+
+                    <img
+                        src="{{asset('build/assets/img/about/about-left-shape.svg')}}"
+                        alt=""
+                        class="shape shape-1"
+                    />
+                    <img
+                        src="{{asset('build/assets/img/about/left-dots.svg')}}"
+                        alt=""
+                        class="shape shape-2"
+                    />
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6">
+                <div class="about-content">
+                    <div class="section-title mb-30">
+                        <h2 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
+                            Perfect Solution Thriving Online Business
+                        </h2>
+                        <p class="wow fadeInUp" data-wow-delay=".4s">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                            dinonumy eirmod tempor invidunt ut labore et dolore magna
+                            aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                            justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                            sea takimata sanctus est Lorem.Lorem ipsum dolor sit amet.
+                        </p>
+                    </div>
+                    <a
+                        href="javascript:void(0)"
+                        class="main-btn btn-hover border-btn wow fadeInUp"
+                        data-wow-delay=".6s"
+                    >Discover More</a
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ======== about-section end ======== -->
+
+<!-- ======== about2-section start ======== -->
+<section id="about" class="about-section pt-150">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-4 col-lg-4">
+                <div class="about-content">
+                    <div class="section-title mb-30">
+                        <h2 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
+                            Easy to Use with Tons of Awesome Features
+                        </h2>
+                        <p class="wow fadeInUp" data-wow-delay=".4s">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                            aliquyam erat, sed diam voluptua.
+                        </p>
+                    </div>
+                    <ul>
+                        <li>Quick Access</li>
+                        <li>Easily to Manage</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                    <a
+                        href="javascript:void(0)"
+                        class="main-btn btn-hover border-btn wow fadeInUp"
+                        data-wow-delay=".6s"
+                    >Learn More</a
+                    >
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-8 order-first order-lg-last">
+                <div class="about-img-2">
+                    <img src="{{asset('build/assets/img/hero/tela-inicial2.png')}}" alt="" style="width:1000px;height:450px;" />
+                    <img
+                        src="{{asset('build/assets/img/about/about-right-shape.svg')}}"
+                        alt=""
+                        class="shape shape-1"
+                    />
+                    <img
+                        src="{{asset('build/assets/img/about/right-dots.svg')}}"
+                        alt=""
+                        class="shape shape-2"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ======== about2-section end ======== -->
+
+
+
+<!-- ======== subscribe-section start ======== -->
+<section id="contact" class="subscribe-section pt-120">
+    <div class="container">
+        <div class="subscribe-wrapper img-bg">
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-7">
+                    <div class="section-title mb-15">
+                        <h2 class="text-white mb-25">Receber Email?</h2>
+                        <p class="text-white pr-5">
+                            Quer ficar por dentro das novidades, quando sair uma tabela nova...
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-5">
+                    <form action="#" class="subscribe-form">
+                        <input
+                            type="email"
+                            name="subs-email"
+                            id="subs-email"
+                            placeholder="Seu Email"
+                        />
+                        <button type="submit" class="main-btn btn-hover">
+                            Enviar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ======== subscribe-section end ======== -->
+
+<!-- ======== footer start ======== -->
+<footer class="footer">
+    <div class="container">
+        <div class="widget-wrapper">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="footer-widget">
+                        <div class="mb-30">
+                            <a href="index.html">
+                                <img src="{{asset('build/assets/img/logo/logo-bmsys.png')}}" style="padding:5px;width:400px;height:120px;"  alt="" />
+                            </a>
+                        </div>
+                        <p class="desc mb-30 text-white">
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                            dinonumy eirmod tempor invidunt.
+                        </p>
+                        <ul class="socials">
+                            <li>
+                                <a href="jvascript:void(0)">
+                                    <i class="lni lni-facebook-filled"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="jvascript:void(0)">
+                                    <i class="lni lni-twitter-filled"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="jvascript:void(0)">
+                                    <i class="lni lni-instagram-filled"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="jvascript:void(0)">
+                                    <i class="lni lni-linkedin-original"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xl-2 col-lg-2 col-md-6">
+                    <div class="footer-widget">
+                        <h3>About Us</h3>
+                        <ul class="links">
+                            <li><a href="javascript:void(0)">Home</a></li>
+                            <li><a href="javascript:void(0)">Feature</a></li>
+                            <li><a href="javascript:void(0)">About</a></li>
+                            <li><a href="javascript:void(0)">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3>Features</h3>
+                        <ul class="links">
+                            <li><a href="javascript:void(0)">How it works</a></li>
+                            <li><a href="javascript:void(0)">Privacy policy</a></li>
+                            <li><a href="javascript:void(0)">Terms of service</a></li>
+                            <li><a href="javascript:void(0)">Refund policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3>Other Products</h3>
+                        <ul class="links">
+                            <li><a href="jvascript:void(0)">Accounting Software</a></li>
+                            <li><a href="jvascript:void(0)">Billing Software</a></li>
+                            <li><a href="jvascript:void(0)">Booking System</a></li>
+                            <li><a href="jvascript:void(0)">Tracking System</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ======== footer end ======== -->
+
+<!-- ======== scroll-top ======== -->
+<a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+</a>
+
+<!-- ======== JS here ======== -->
+<script src="{{asset('build/assets/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('build/assets/js/wow.min.js')}}"></script>
+<script src="{{asset('build/assets/js/main.js')}}"></script>
 </body>
 </html>

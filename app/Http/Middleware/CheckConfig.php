@@ -20,7 +20,7 @@ class CheckConfig
             if(auth()->user()->tenant()->first()->tipo == 1) {
                 return redirect(route('home.config'));
             } else {
-                return redirect(route('home.configuracao'));
+                return redirect(route('home.config'));
             }
         }
         return $next($request);

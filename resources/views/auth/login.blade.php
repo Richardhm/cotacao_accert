@@ -27,17 +27,17 @@
 
     </nav>
     <section class="flex w-full justify-center h-screen items-center" style="border-bottom: 50px solid #A78BFA;">
-        <div class="p-10 text-white bg-purple-400" style="width:380px;height:490px;">
-            <h3 class="text-2xl font-bold mb-9" style="color:#FFF;font-family: 'Nunito Sans';font-size:2em;">Olá!</h3>
+        <div class="p-5 text-white bg-purple-400 rounded-lg" style="width:380px;">
+            <h3 class="text-lg font-bold mb-5" style="color:#FFF;font-family: 'Nunito Sans';font-size:2em;">Olá!</h3>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <div class="mb-5">
-                    <label for="email" class="block mb-2 font-medium text-white dark:text-white text-lg">Email</label>
+                <div class="mb-2">
+                    <label for="email" class="block mb-1 font-medium text-white dark:text-white text-lg">Email</label>
                     <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-purple-400 text-sm block w-full p-2.5 focus:border-transparent focus:ring-0 focus:outline-none rounded-lg" required />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
-                <div class="mb-5">
-                    <label for="password" class="block mb-2 font-medium text-white dark:text-white text-lg">Senha</label>
+                <div class="mb-2">
+                    <label for="password" class="block mb-1 font-medium text-white dark:text-white text-lg">Senha</label>
                     <div class="relative">
                         <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-purple-400 text-sm block w-full p-2.5 focus:border-transparent focus:ring-0 focus:outline-none rounded-lg" required />
                         <button type="button" id="togglePassword" class="absolute right-2 top-2 text-purple-400 cursor-pointer">
@@ -52,8 +52,8 @@
                     </div>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
-                <div id="recaptcha-container" class="g-recaptcha mb-5" data-sitekey="6LetYI4pAAAAAAW5eeFUc9R2FYyZAJfqyJaFEm5h"></div>
-                <button type="submit" class="bg-white hover:bg-purple-800 hover:text-white focus:outline-none focus:ring-blue-300 font-medium text-sm w-full px-5 py-2.5 text-center focus:border-transparent focus:ring-0 focus:outline-none rounded-lg text-purple-900">Avançar</button>
+{{--                <div id="recaptcha-container" class="g-recaptcha mb-2" style="width:380px;" data-sitekey="6LetYI4pAAAAAAW5eeFUc9R2FYyZAJfqyJaFEm5h"></div>--}}
+                <button type="submit" class="bg-white focus:outline-none font-medium mt-2 text-sm w-full px-5 py-2.5 text-center focus:border-transparent focus:ring-0 focus:outline-none rounded-lg text-purple-900">Avançar</button>
             </form>
         </div>
 

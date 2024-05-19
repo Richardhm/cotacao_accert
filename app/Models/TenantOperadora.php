@@ -15,6 +15,11 @@ class TenantOperadora extends Model
         return $this->hasMany(Operadoras::class);
     }
 
+    public function tenantOpe()
+    {
+        return $this->belongsToMany(Operadoras::class, 'tenant_operadoras', 'tenant_id', 'operadora_id');
+    }
+
 
 
 }
