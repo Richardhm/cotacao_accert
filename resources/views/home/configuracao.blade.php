@@ -8,28 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Configurações</title>
     <style>
-        * {
-            margin:0;
-            padding:0;
-        }
-        .upload-icon {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            margin-bottom: 40px; /* ajuste fino para posicionar o ícone no lugar certo */
-            margin-right: -20px;
-        }
-
+        * {margin:0;padding:0;}
+        .upload-icon {position: absolute;bottom: 0;right: 0;margin-bottom: 40px;margin-right: -20px;}
         #linha01 {width:100%;height: 60px;resize: none;white-space: pre-wrap;font-size: 0.8em;}
         #linha02 {width:100%;height: 60px;resize: none;white-space: pre-wrap;font-size: 0.8em;}
         #linha03 {width:100%;height: 60px;resize: none;white-space: pre-wrap;font-size: 0.8em;}
-        .coparticipacao_titulo {
-            font-size:0.6em;
-        }
-        .coparticipacao_valor {
-            font-size:0.6em;
-        }
-
+        .coparticipacao_titulo {font-size:0.6em;}
+        .coparticipacao_valor {font-size:0.6em;}
         html, body {height: 100%;}
         #overlay {display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.5);z-index: 999;}
         #zoomedImage {display: none;position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);max-width: 30%;max-height: 80%;z-index: 1000;}
@@ -51,182 +36,9 @@
 
 <div class="flex flex-wrap h-[92%]" style="margin-top: 65px;">
     <input type="hidden" id="plano_selecionado">
-    <div class="h-[100%] mr-2 ml-2" style="width:23%;">
-        <div class="h-[40%] box-border rounded-lg" style="background-color: #A78BFA;">
-            <div class="flex flex-col items-center">
-                <label for="file-input" class="custom-upload mt-2" id="upload-label">
-                    @if($photo)
-                        <img class="w-36 h-36 rounded-full shadow-lg text-white bg-white" id="uploaded-image" src="{{$photo}}" alt="{{auth()->user()->name}}"/>
-                    @else
-                        <div class="flex items-center justify-center w-36 h-36 mb-3 bg-white rounded-full relative inline-block p-5 text-white border-0 cursor-pointer upload-button">
-                            <img src="{{asset('avatar-user.png')}}" alt="Avatar">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray" class="w-12 h-12 upload-icon text-white">
-                                <path d="M12 9a3.75 3.75 0 1 0 0 7.5A3.75 3.75 0 0 0 12 9Z" />
-                                <path fill-rule="evenodd" d="M9.344 3.071a49.52 49.52 0 0 1 5.312 0c.967.052 1.83.585 2.332 1.39l.821 1.317c.24.383.645.643 1.11.71.386.054.77.113 1.152.177 1.432.239 2.429 1.493 2.429 2.909V18a3 3 0 0 1-3 3h-15a3 3 0 0 1-3-3V9.574c0-1.416.997-2.67 2.429-2.909.382-.064.766-.123 1.151-.178a1.56 1.56 0 0 0 1.11-.71l.822-1.315a2.942 2.942 0 0 1 2.332-1.39ZM6.75 12.75a5.25 5.25 0 1 1 10.5 0 5.25 5.25 0 0 1-10.5 0Zm12-1.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
-                            </svg>
-
-                        </div>
-                    @endif
-                </label>
-                <input type="file" id="file-input" accept="image/*" style="display: none;">
-            </div>
-
-
-            <div class="flex flex-col justify-center">
-                <input type="text" readonly  value="{{auth()->user()->name}}" class="w-[90%] bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg block p-1 mx-auto focus:border-transparent focus:ring-0 focus:outline-none">
-                <input type="text" readonly  value="{{auth()->user()->email}}" class="w-[90%] my-0.5 bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg block p-1 mx-auto focus:border-transparent focus:ring-0 focus:outline-none">
-                <input type="text" id="phone"  value="{{auth()->user()->phone}}" class="telefone_change w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block p-1 mx-auto focus:border-transparent focus:ring-0 focus:outline-none">
-            </div>
-
-
-        </div>
-
-        <div class="h-[59%] mt-1 flex flex-col p-1 rounded-lg items-start bg-purple-400">
-
-            <button class="py-1.5 w-full px-5 me-2 mb-2 text-sm font-medium text-white bg-white rounded-lg border border-gray-200 bg-gray-500 bg-opacity-10">
-                Operadoras
-            </button>
-
-
-            <div class="flex flex-wrap w-full items-start justify-between">
-                @foreach($operadoras as $op)
-                    <label class="bg-white w-full container_image_operadora flex flex-wrap justify-between py-0.5 mb-1 text-sm font-medium text-white focus:outline-none bg-white rounded-lg border border-gray-200 focus:z-10 bg-gray-500 bg-opacity-10 dark:hover:text-gray-900">
-
-                        <div class="flex justify-between items-center w-full">
-                            <div class="w-[50%] flex ml-4 items-center">
-                                <input type="radio" name="operadoras" id="operadoras_{{$op->id}}" value="{{$op->id}}" class="w-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <span class="ml-1">{{$op->nome}}</span>
-                            </div>
-                            <div class="flex w-[50%] justify-end mr-2">
-                                <img src="{{$op->logo}}" alt="Opção 1" class="image_operadora p-1 w-full bg-white" style="width:100px;background-color:white;max-height:32px;border-radius:5px;height:32px;">
-                            </div>
-                        </div>
-                    </label>
-                @endforeach
-            </div>
 
 
 
-        </div>
-
-
-    </div>
-
-    <div class="flex flex-wrap rounded-lg h-[100%] mr-2" style="width:23%;">
-        {{-- Bloco dos Planos--}}
-        <div class="h-[40%] box-border rounded-lg w-full" style="background-color: #A78BFA;">
-             <div for="planos" class="block mb-2 text-sm font-medium text-gray-900 container_planos dark:text-white listar_planos text-white text-center hidden">
-                 <button class="py-1.5 w-[99%] px-5 mb-2 mt-1 text-sm font-medium text-white bg-white rounded-lg border border-gray-200 bg-gray-500 bg-opacity-10">
-                     Planos
-                 </button>
-                <div class="flex flex-wrap w-full items-start justify-between listar_planos_container">
-
-                </div>
-            </div>
-
-        </div>
-        {{-- Bloco dos Planos--}}
-
-        {{-- Editar Coparticipação--}}
-
-        <div class="h-[59%] flex flex-col p-1 rounded-lg items-start bg-purple-400" style="width:100%;overflow: auto">
-            <div class="hidden container_observacoes w-full">
-                <h5 class="text-xs dark:text-white text-white mb-0.5">1º Observações <small>(No máximo 3 linhas)</small> </h5>
-
-                <div class="w-full mb-0.5">
-
-
-                    <textarea name="linha01" id="linha01" placeholder="Digite aqui" class="observacao bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-transparent focus:ring-0 block w-full p-1 placeholder:text-gray-400"></textarea>
-
-
-
-                </div>
-                <div class="w-full mb-0.5">
-
-                    <textarea name="linha02" id="linha02" placeholder="Digite aqui" class="observacao bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-transparent focus:ring-0 block w-full p-1 placeholder:text-gray-400"></textarea>
-
-
-                </div>
-                <div class="w-full mb-0.5">
-
-                    <textarea name="linha03" id="linha03" placeholder="Digite aqui" class="observacao bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-transparent focus:ring-0 block w-full p-1 placeholder:text-gray-400"></textarea>
-                </div>
-            </div>
-            <div class="hidden container_coparticipacao w-full">
-                <h5 class="text-xs dark:text-white text-white mb-1">2º Valores de Coparticipação<small>(No máximo 5 valores)</small></h5>
-
-
-                <div class="flex mb-0.5">
-                    <div class="w-[80%]">
-                        <input type="text" name="copartipacao_titulo_01" value="" style="font-size: 0.8em;" id="coparticipacao_titulo_01" class="coparticipacao_titulo bg-gray-50 border
-                        border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Titulo" />
-                    </div>
-                    <div class="w-[18%] ml-1 relative">
-                        <div style="position: relative;" class="w-full">
-                            <span style="position: absolute; left: 5px; top: 50%; transform: translateY(-50%); color: #718096;font-size: 0.8em;">R$</span>
-                            <input type="text" name="copartipacao_valor_01" value="" style="font-size: 0.8em;text-align:right;" id="coparticipacao_valor_01" class="coparticipacao_valor bg-gray-50 border
-                            border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Valor" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex mb-0.5">
-                    <div class="w-[80%]">
-                        <input type="text" name="copartipacao_titulo_02" value="" style="font-size: 0.8em;" id="coparticipacao_titulo_02" class="coparticipacao_titulo bg-gray-50 border
-                        border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Titulo" />
-
-                    </div>
-                    <div class="w-[18%] ml-1 relative">
-                        <span style="position: absolute; left: 5px; top: 50%; transform: translateY(-50%); color: #718096;font-size: 0.8em;">R$</span>
-                        <input type="text" name="copartipacao_valor_02" value="" style="font-size: 0.8em;text-align:right;" id="coparticipacao_valor_02" class="coparticipacao_valor bg-gray-50 border
-                        border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Valor" />
-                    </div>
-                </div>
-
-                <div class="flex mb-0.5">
-                    <div class="w-[80%]">
-
-                        <input type="text" name="copartipacao_titulo_03" value="" style="font-size: 0.8em;" id="coparticipacao_titulo_03" class="coparticipacao_titulo bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Titulo" />
-
-                    </div>
-                    <div class="w-[18%] ml-1 relative">
-                        <span style="position: absolute; left: 5px; top: 50%; transform: translateY(-50%); color: #718096;font-size: 0.8em;">R$</span>
-                        <input type="text" name="copartipacao_valor_03" value="" style="font-size: 0.8em;text-align:right;" id="coparticipacao_valor_03" class="coparticipacao_valor bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Valor" />
-
-                    </div>
-                </div>
-
-                <div class="flex mb-0.5">
-                    <div class="w-[80%]">
-
-                        <input type="text" name="copartipacao_titulo_04" value="" style="font-size: 0.8em;" id="coparticipacao_titulo_04" class="coparticipacao_titulo bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Titulo" />
-
-                    </div>
-                    <div class="w-[18%] ml-1 relative">
-                        <span style="position: absolute; left: 5px; top: 50%; transform: translateY(-50%); color: #718096;font-size: 0.8em;">R$</span>
-                        <input type="text" name="copartipacao_valor_04" value="" style="font-size: 0.8em;text-align:right;" id="coparticipacao_valor_04" class="coparticipacao_valor bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Valor" />
-
-                    </div>
-                </div>
-
-                <div class="flex mb-0.5">
-                    <div class="w-[80%]">
-
-                        <input type="text" name="copartipacao_titulo_05" value="" style="font-size: 0.8em;" id="coparticipacao_titulo_05" class="coparticipacao_titulo bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Titulo" />
-                    </div>
-                    <div class="w-[18%] ml-1 relative">
-                        <span style="position: absolute; left: 5px; top: 50%; transform: translateY(-50%); color: #718096;font-size: 0.8em;">R$</span>
-                        <input type="text" name="copartipacao_valor_05" value="" style="font-size: 0.8em;text-align:right;" id="coparticipacao_valor_05" class="coparticipacao_valor bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:border-transparent focus:ring-0 block w-full p-0.5 placeholder:text-gray-400" placeholder="Valor" />
-                    </div>
-                </div>
-
-            </div>
-
-            {{-- Editar Coparticipação--}}
-
-
-        </div>
-    </div>
 
     <div class="flex flex-wrap rounded-lg h-[100%]" style="width:52%;">
 

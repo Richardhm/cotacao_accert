@@ -42,6 +42,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->invalidate();
 
+        if (session()->has('tenant_id')) {
+            session()->forget('tenant_id');
+        }
+
         $request->session()->regenerateToken();
 
         return redirect('/');

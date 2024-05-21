@@ -159,10 +159,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-//        if (auth()->user()->subscription('premium')->onGracePeriod()) {
-//            echo "Olaaa";
-//            //dd(auth()->user()->subscription('premium')->resume());
-//        }
 
         $listConvidados = "";
         if(auth()->user()->tenant()->first()->tipo == 3 && auth()->user()->admin == 1) {
