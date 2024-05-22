@@ -27,7 +27,20 @@ class DashboardController extends Controller
             ->with('pdfPerfil','pdfPerfil.cabecalho','tenant')
             ->first();
 
+
+
+
+
+
         $tenant = Tenant::find(session()->get('tenant_id'));
+
+
+
+
+
+
+
+
         $tenantId = session()->get('tenant_id');
         $planos = Planos::all();
 
@@ -100,37 +113,8 @@ class DashboardController extends Controller
     public function configurar_finalizar()
     {
         $tenant_id = session()->get('tenant_id');
-
-
         $tipo = Tenant::find($tenant_id)->tipo;
-
-
-
         if($tipo == 1) {
-
-            $cad = new TenantOperadora();
-            $tenant = TenantOperadora::where("tenant_id",$tenant_id)->first();
-
-
-
-            if($tenant) {
-                $tenant->operadora_id = request()->operadora_id_finalizar;
-                $tenant->save();
-            } else {
-                $cad = new TenantOperadora();
-                $cad->tenant_id = $tenant_id;
-                $cad->operadora_id = request()->operadora_id_finalizar;
-                $cad->save();
-            }
-
-
-
-
-
-
-
-
-
 
             if(!empty(request()->cabecalho_id_finalizar) && isset(request()->cabecalho_id_finalizar)) {
                 auth()->user()->pdfPerfil()->updateOrCreate([

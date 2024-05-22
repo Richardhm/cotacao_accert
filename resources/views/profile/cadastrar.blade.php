@@ -88,6 +88,17 @@
                     <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                 </div>
 
+                <div class="mb-0.5">
+                    <label for="phone" class="block mb-1 font-medium text-white dark:text-white text-sm">Operadora</label>
+                    <select name="operadora" id="operadora" class="w-full rounded text-center">
+                        <option value="">--Escolher a operadora--</option>
+                        @foreach($operadoras as $op)
+                            <option value="{{$op->id}}">{{$op->nome}}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('operadora')" class="mt-2" />
+                </div>
+
 
 
                 <div class="w-full mt-4">

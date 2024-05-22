@@ -87,7 +87,10 @@ class ProfileController extends Controller
 
     public function cadastrar()
     {
-        return view('profile.cadastrar');
+        $operadoras = Operadoras::all();
+        return view('profile.cadastrar',[
+            'operadoras' => $operadoras
+        ]);
     }
 
     public function cadastrar_intermediario()
@@ -121,11 +124,9 @@ class ProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed'],
-            'phone' => ['required']
+            'phone' => ['required'],
+            'operadora' => ['required']
         ]);
-
-
-
 
         $tenant = new Tenant();
         $tenant->name = "basico_1_".time();
@@ -147,6 +148,11 @@ class ProfileController extends Controller
         $user->admin = 1;
 
         $user->save();
+
+        $cad = new TenantOperadora();
+        $cad->tenant_id = $tenant_id;
+        $cad->operadora_id = request()->operadora;
+        $cad->save();
 
 
         event(new Registered($user));
