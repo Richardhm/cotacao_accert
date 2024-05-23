@@ -55,7 +55,7 @@
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg">
                         <a class="navbar-brand" href="index.html">
-                            <img src="{{asset('build/assets/img/logo/logo-bmsys.png')}}" alt="Logo" />
+                            <img src="{{asset('img/logo/logo-bmsys.png')}}" alt="Logo" />
                         </a>
                         <button
                             class="navbar-toggler"
@@ -128,7 +128,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
-                    <img src="{{asset('build/assets/img/hero/tela-inicial2.png')}}" alt="" />
+                    <img src="{{asset('img/hero/tela-inicial2.png')}}" alt="" />
                 </div>
             </div>
         </div>
@@ -227,12 +227,12 @@
                     </div>
 
                     <img
-                        src="{{asset('build/assets/img/about/about-left-shape.svg')}}"
+                        src="{{asset('img/about/about-left-shape.svg')}}"
                         alt=""
                         class="shape shape-1"
                     />
                     <img
-                        src="{{asset('build/assets/img/about/left-dots.svg')}}"
+                        src="{{asset('img/about/left-dots.svg')}}"
                         alt=""
                         class="shape shape-2"
                     />
@@ -296,14 +296,14 @@
             </div>
             <div class="col-xl-8 col-lg-8 order-first order-lg-last">
                 <div class="about-img-2">
-                    <img src="{{asset('build/assets/img/hero/tela-inicial2.png')}}" alt="" style="width:1000px;height:450px;" />
+                    <img src="{{asset('img/hero/tela-inicial2.png')}}" alt="" style="width:1000px;height:450px;" />
                     <img
-                        src="{{asset('build/assets/img/about/about-right-shape.svg')}}"
+                        src="{{asset('img/about/about-right-shape.svg')}}"
                         alt=""
                         class="shape shape-1"
                     />
                     <img
-                        src="{{asset('build/assets/img/about/right-dots.svg')}}"
+                        src="{{asset('img/about/right-dots.svg')}}"
                         alt=""
                         class="shape shape-2"
                     />
@@ -357,7 +357,7 @@
                     <div class="footer-widget">
                         <div class="mb-30">
                             <a href="index.html">
-                                <img src="{{asset('build/assets/img/logo/logo-bmsys.png')}}" style="padding:5px;width:400px;height:120px;"  alt="" />
+                                <img src="{{asset('img/logo/logo-bmsys.png')}}" style="padding:5px;width:400px;height:120px;"  alt="" />
                             </a>
                         </div>
                         <p class="desc mb-30 text-white">
