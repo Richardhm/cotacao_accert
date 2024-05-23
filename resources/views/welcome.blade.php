@@ -14,10 +14,10 @@
     <!-- Place favicon.ico in the root directory -->
 
     <!-- ======== CSS here ======== -->
-    <link rel="stylesheet" href="{{asset('build/assets/css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('build/assets/css/lineicons.css')}}" />
-    <link rel="stylesheet" href="{{asset('build/assets/css/animate.css')}}" />
-    <link rel="stylesheet" href="{{asset('build/assets/css/main.css')}}" />
+    <link rel="stylesheet" href="{{asset('bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('lineicons.css')}}" />
+    <link rel="stylesheet" href="{{asset('animate.css')}}" />
+    <link rel="stylesheet" href="{{asset('main.css')}}" />
 </head>
 <body>
 <!--[if lte IE 9]>
