@@ -436,8 +436,8 @@
 </a>
 
 <!-- ======== JS here ======== -->
-<script src="{{asset('build/assets/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('build/assets/js/wow.min.js')}}"></script>
-<script src="{{asset('build/assets/js/main.js')}}"></script>
+<script src="{{asset('bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('wow.min.js')}}"></script>
+<script src="{{asset('main.js')}}"></script>
 </body>
 </html>
