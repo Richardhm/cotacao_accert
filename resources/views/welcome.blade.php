@@ -85,9 +85,6 @@
                                 <li class="nav-item">
                                     <a class="page-scroll" href="#about">Sobre</a>
                                 </li>
-
-
-
                             </ul>
                         </div>
                         <!-- navbar collapse -->
