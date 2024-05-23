@@ -20,10 +20,10 @@
 
     if (window.pageYOffset > sticky) {
       header_navbar.classList.add("sticky");
-      logo.src = "build/assets/img/logo/logo-bmsys.png";
+      logo.src = "img/logo/logo-bmsys.png";
     } else {
       header_navbar.classList.remove("sticky");
-      logo.src = "build/assets/img/logo/logo-bmsys.png";
+      logo.src = "img/logo/logo-bmsys.png";
     }
 
     // show or hide the back-top-top button
