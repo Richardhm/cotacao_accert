@@ -336,7 +336,8 @@
               "operadora": operadora,
               "faixas": faixas,
               "odonto" : odonto,
-              "cliente" : cliente
+              "cliente" : cliente,
+              "_token": "{{ csrf_token() }}"
             },
             xhrFields: {
                     responseType: 'blob'
