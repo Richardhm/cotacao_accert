@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Login</title>
+    <title>Login - BmSys11</title>
 
     <style>
 
@@ -67,6 +67,20 @@
 
 
         <script>
+
+
+           $(document).ready(function(){
+               $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   }
+               });
+           });
+
+
+
+
+
             const passwordInput = document.getElementById('password');
             const toggleButton = document.getElementById('togglePassword');
             const showIcon = document.getElementById('showIcon');
