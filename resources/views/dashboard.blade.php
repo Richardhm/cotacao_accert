@@ -424,7 +424,8 @@
                   "tabela_origem": cidade,
                   "plano": plano,
                   "operadora": operadora,
-                  "faixas": faixas
+                  "faixas": faixas,
+                  "_token": "{{ csrf_token() }}",
               },
               success: function(res) {
                   $("#resultado").removeClass('hidden').slideDown('slow').html(res);
