@@ -103,6 +103,16 @@
 <script>
     $(document).ready(function(){
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+
+
+
+
         toastr.options = {
             "closeButton": false,
             "debug": false,
@@ -120,18 +130,6 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
-
-
-
-
-
-
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
         $(".tablink").click(function() {
             var tabName = $(this).data("tab");
@@ -160,15 +158,12 @@
                     nome,email
                 },
                 success:function(res) {
-
                     if(res != "error_cadastro" && res != "end") {
                         closeModal();
                         $("#listar").html(res);
-
                         toastr["success"](`O convidado ${nome} foi cadastrado com sucesso`);
                         $("#nome").val('');
                         $("#email").val('');
-
                     }
                 }
             })
@@ -256,7 +251,11 @@
             $.ajax({
                 url:"{{route('home.operadora.plano')}}",
                 method:"POST",
-                data: {operadora_id},
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    operadora_id
+
+                },
                 success:function(res) {
                     if(res == "nada") {
                         $('#planos').html('<button class="py-2.5 w-full px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 bg-gray-500 bg-opacity-10 dark:hover:text-gray-900">Sem Planos</button>');
