@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Cadastrar</title>
+    <title>Cadastrar - basico</title>
     <style>
         body {display:flex;justify-content: center;align-items: center;min-height:100vh;}
         .box {position:relative;width:380px;height:420px;background: #8f8f8f;border-radius:8px;overflow:hidden;}
