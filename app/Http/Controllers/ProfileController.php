@@ -119,7 +119,7 @@ class ProfileController extends Controller
 
     public function cadastrarStore(Request $request)
     {
-        dd($request->all());
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],

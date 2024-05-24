@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Cadastrar</title>
     <style>
         body {display:flex;justify-content: center;align-items: center;min-height:100vh;}
@@ -36,7 +37,7 @@
             </div>
 
             <form method="POST" action="{{ route('perfil.cadastrar.store') }}" class="p-2 bg-purple-400" style="width:380px;">
-                @csrf
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
                 <div class="mb-0.5">
                     <label for="name" class="block mb-1 font-medium text-white dark:text-white text-sm">Nome</label>
@@ -114,6 +115,17 @@
 
 <script>
     $(document).ready(function(){
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+
+
+
+
         $('#phone').mask('(00) 0 0000-0000');
     });
 
