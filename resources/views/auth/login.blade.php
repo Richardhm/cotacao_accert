@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Login</title>
 
     <style>
@@ -30,7 +31,7 @@
         <div class="p-5 text-white bg-purple-400 rounded-lg" style="width:380px;">
             <h3 class="text-lg font-bold mb-5" style="color:#FFF;font-family: 'Nunito Sans';font-size:2em;">Olá!</h3>
             <form method="POST" action="{{ route('login') }}">
-                @csrf
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <div class="mb-2">
                     <label for="email" class="block mb-1 font-medium text-white dark:text-white text-lg">Email</label>
                     <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-purple-400 text-sm block w-full p-2.5 focus:border-transparent focus:ring-0 focus:outline-none rounded-lg" required />
