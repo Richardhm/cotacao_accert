@@ -44,9 +44,9 @@
             }
 
         </style>
-        <script src="jquery.js"></script>
-        <script src="toastr.min.js"></script>
-        <script src="js/jquery.mask.min.js"></script>
+        <script src="{{asset('jquery.js')}}"></script>
+        <script src="{{asset('toastr.min.js')}}"></script>
+        <script src="{{asset('js/jquery.mask.min.js')}}"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
