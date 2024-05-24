@@ -8,7 +8,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="{{asset('build/assets/toastr/toastr.min.css')}}">
+        <link rel="stylesheet" href="{{asset('toastr.min.css')}}">
 
 
         <style>
@@ -44,8 +44,8 @@
             }
 
         </style>
-        <script src="build/assets/jquery.js"></script>
-        <script src="build/assets/toastr/toastr.min.js"></script>
+        <script src="jquery.js"></script>
+        <script src="toastr.min.js"></script>
         <script src="js/jquery.mask.min.js"></script>
 
         <!-- Scripts -->
