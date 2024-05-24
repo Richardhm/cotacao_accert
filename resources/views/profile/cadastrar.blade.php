@@ -11,7 +11,7 @@
         .box {position:relative;width:380px;height:420px;background: #8f8f8f;border-radius:8px;overflow:hidden;}
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="{{asset('build/assets/jquery.js')}}"></script>
+    <script src="{{asset('jquery.js')}}"></script>
     <script src="{{asset('js/jquery.mask.min.js')}}"></script>
 </head>
 <body class="font-sans bg-gray-100">
