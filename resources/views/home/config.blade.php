@@ -50,7 +50,7 @@
         .font4rem {font-size:0.4rem;}
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="{{asset('build/assets/jquery.js')}}"></script>
+    <script src="{{asset('jquery.js')}}"></script>
     <script src="{{asset('js/jquery.mask.min.js')}}"></script>
 
 </head>
