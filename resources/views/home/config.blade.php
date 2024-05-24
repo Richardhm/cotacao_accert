@@ -720,7 +720,7 @@
                     <div class="w-full flex justify-end mt-1 mr-2">
 
                         <form action="{{route('configurar.finalizar')}}" method="POST">
-                            @csrf
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <input type="hidden" name="operadora_id_finalizar" id="operadora_id_finalizar" value="">
                             <input type="hidden" name="cabecalho_id_finalizar" id="cabecalho_id_finalizar" value="">
                             <button type="submit" class="w-full block text-center py-1 text-white">
