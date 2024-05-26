@@ -154,6 +154,7 @@
             $.ajax({
                 url:"{{route('profile.convidado.cadastrar')}}",
                 method:"POST",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: {
                     nome,
                     email,
@@ -178,6 +179,7 @@
            $.ajax({
               url:"{{route('deletar.convidado')}}",
               method:"POST",
+              headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
               data: {
                   id,
                   "_token": "{{ csrf_token() }}"
@@ -254,6 +256,7 @@
             $.ajax({
                 url:"{{route('home.operadora.plano')}}",
                 method:"POST",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: {
                     "_token": "{{ csrf_token() }}",
                     operadora_id
@@ -333,6 +336,7 @@
         $.ajax({
             url: "{{route('gerar.imagem')}}",
             method: "POST",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {
               "tabela_origem": cidade,
               "plano": plano,
@@ -424,6 +428,7 @@
             $.ajax({
               url: "{{ route('orcamento.montarOrcamento') }}",
               method: "POST",
+              headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
               data: {
                   "tabela_origem": cidade,
                   "plano": plano,
