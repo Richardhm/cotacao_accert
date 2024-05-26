@@ -43,7 +43,7 @@ return [
 
     'image' => [
         'enabled' => true,
-        'binary' => base_path('vendor\wemersonjanuario\wkhtmltopdf-windows\bin\64bit\wkhtmltoimage'),
+        'binary' => '/vendor/wemersonjanuario/wkhtmltopdf-windows/bin/64bit/wkhtmltoimage',
         'timeout' => false,
         'options' => [],
         'env' => [],
