@@ -336,7 +336,7 @@
         $.ajax({
             url: "{{route('gerar.imagem')}}",
             method: "POST",
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            
             data: {
               "tabela_origem": cidade,
               "plano": plano,
