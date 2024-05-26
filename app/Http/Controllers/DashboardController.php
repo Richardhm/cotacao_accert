@@ -26,21 +26,7 @@ class DashboardController extends Controller
         $user = User::find(auth()->user()->id)
             ->with('pdfPerfil','pdfPerfil.cabecalho','tenant')
             ->first();
-
-
-
-
-
-
         $tenant = Tenant::find(session()->get('tenant_id'));
-
-
-
-
-
-
-
-
         $tenantId = session()->get('tenant_id');
         $planos = Planos::all();
 

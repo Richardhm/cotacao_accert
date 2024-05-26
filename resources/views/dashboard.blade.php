@@ -155,7 +155,9 @@
                 url:"{{route('profile.convidado.cadastrar')}}",
                 method:"POST",
                 data: {
-                    nome,email
+                    nome,
+                    email,
+                    "_token": "{{ csrf_token() }}"
                 },
                 success:function(res) {
                     if(res != "error_cadastro" && res != "end") {
@@ -177,7 +179,8 @@
               url:"{{route('deletar.convidado')}}",
               method:"POST",
               data: {
-                  id
+                  id,
+                  "_token": "{{ csrf_token() }}"
               },
               success:function(res) {
                   self.closest('tr').fadeOut('fast');
