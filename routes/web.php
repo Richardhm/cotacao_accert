@@ -41,8 +41,9 @@ Route::get('/test-imagem', function() {
     $html = '<h1>Test Snappy</h1><p>This is a test.</p>';
     
     $output = storage_path('app/public/test-snappy-image.jpg');
-    dd($output);
+    
     $snappy->generateFromHtml($html, $output);
+    dd($snappy);
     return response()->download($output);
 });
 
