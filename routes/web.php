@@ -35,6 +35,7 @@ Route::get('/planos',[AssinaturaController::class,'listarPlanos'])->name('listar
 Route::get('/cadastro',[AssinaturaController::class,'cadastro'])->name('cadastro.planos');
 
 Route::get('/test-imagem', function() {
+    dd("Olaaaaa");
     $snappy = \App::make('snappy.image');
     $html = '<h1>Test Snappy</h1><p>This is a test.</p>';
     $output = storage_path('app/public/test-snappy-image.jpg');
