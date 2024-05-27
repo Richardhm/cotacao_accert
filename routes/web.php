@@ -34,6 +34,16 @@ Route::get('subscriptions/premium',[\App\Http\Controllers\Subscription\Subscript
 Route::get('/planos',[AssinaturaController::class,'listarPlanos'])->name('listar.planos');
 Route::get('/cadastro',[AssinaturaController::class,'cadastro'])->name('cadastro.planos');
 
+Route::get('/test-imagem', function() {
+    $snappy = \App::make('snappy.image');
+    $html = '<h1>Test Snappy</h1><p>This is a test.</p>';
+    $output = storage_path('app/public/test-snappy-image.jpg');
+    $snappy->generateFromHtml($html, $output);
+    return response()->download($output);
+});
+
+
+
 Route::middleware(['auth','verified'])->group(function () {
 
     Route::post("/pdf",[PerfilController::class,'criarImagem'])->name('gerar.imagem');
