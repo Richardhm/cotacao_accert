@@ -37,10 +37,11 @@ Route::get('/cadastro',[AssinaturaController::class,'cadastro'])->name('cadastro
 Route::get('/test-imagem', function() {
     
     $snappy = \App::make('snappy.image');
-    dd($snappy);
+    
     $html = '<h1>Test Snappy</h1><p>This is a test.</p>';
     
     $output = storage_path('app/public/test-snappy-image.jpg');
+    dd($output);
     $snappy->generateFromHtml($html, $output);
     return response()->download($output);
 });
