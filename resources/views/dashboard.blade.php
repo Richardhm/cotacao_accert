@@ -336,7 +336,7 @@
         $.ajax({
             url: "{{route('gerar.imagem')}}",
             method: "POST",
-            
+
             data: {
               "tabela_origem": cidade,
               "plano": plano,
